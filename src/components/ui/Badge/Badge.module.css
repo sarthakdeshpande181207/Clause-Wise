@@ -1,0 +1,61 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+
+.dotInline {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── RISK VARIANTS ───────────────────────────────────────── */
+.high {
+  color: var(--risk-high);
+  background: var(--risk-high-bg);
+  border-color: var(--risk-high-border);
+}
+.high .dotInline { background: var(--risk-high); }
+.dot.high { background: var(--risk-high); }
+
+.medium {
+  color: var(--risk-medium);
+  background: var(--risk-medium-bg);
+  border-color: var(--risk-medium-border);
+}
+.medium .dotInline { background: var(--risk-medium); }
+.dot.medium { background: var(--risk-medium); }
+
+.low {
+  color: var(--risk-low);
+  background: var(--risk-low-bg);
+  border-color: var(--risk-low-border);
+}
+.low .dotInline { background: var(--risk-low); }
+.dot.low { background: var(--risk-low); }
+
+.info {
+  color: var(--risk-info);
+  background: var(--risk-info-bg);
+  border-color: var(--risk-info-border);
+}
+.info .dotInline { background: var(--risk-info); }
+.dot.info { background: var(--risk-info); }

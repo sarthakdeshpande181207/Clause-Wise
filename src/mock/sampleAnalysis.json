@@ -1,0 +1,160 @@
+{
+  "documentName": "Software Development Agreement — Acme Corp & TechBuilder Inc",
+  "documentType": "Service Agreement",
+  "uploadDate": "2026-08-26T05:30:00Z",
+  "pageCount": 18,
+  "wordCount": 6240,
+  "parties": ["Acme Corp (Client)", "TechBuilder Inc (Service Provider)"],
+  "summary": "This Software Development Agreement establishes the terms under which TechBuilder Inc will develop and deliver a custom CRM platform for Acme Corp. Key areas of concern include aggressive penalty clauses, a broad IP assignment clause, and an auto-renewal provision.",
+
+  "stats": {
+    "totalClauses": 24,
+    "highRisk": 4,
+    "mediumRisk": 7,
+    "lowRisk": 13,
+    "keyDates": 5
+  },
+
+  "keyDates": [
+    { "id": "kd1", "event": "Project Kickoff", "date": "2026-09-01", "section": "Section 3.1", "page": 4, "urgency": "upcoming" },
+    { "id": "kd2", "event": "Phase 1 Delivery", "date": "2026-11-30", "section": "Section 3.2", "page": 4, "urgency": "upcoming" },
+    { "id": "kd3", "event": "Payment Due (Milestone 2)", "date": "2026-12-15", "section": "Section 5.3", "page": 7, "urgency": "upcoming" },
+    { "id": "kd4", "event": "Contract Renewal Window Opens", "date": "2027-06-01", "section": "Section 12.2", "page": 15, "urgency": "far" },
+    { "id": "kd5", "event": "Agreement Expiry", "date": "2027-08-31", "section": "Section 12.1", "page": 15, "urgency": "far" }
+  ],
+
+  "clauses": [
+    {
+      "id": "c1",
+      "number": "4.1",
+      "title": "Intellectual Property Assignment",
+      "category": "Intellectual Property",
+      "riskLevel": "HIGH",
+      "originalText": "The Service Provider hereby irrevocably assigns to the Client all right, title, and interest in and to any and all Deliverables, including all intellectual property rights therein, throughout the universe, in perpetuity. This assignment shall include all works of authorship, inventions, discoveries, and improvements made by the Service Provider in connection with the Services, whether or not patentable.",
+      "simpleExplanation": "Everything you build under this contract — code, designs, documentation, inventions — permanently belongs to the client. You give up all ownership forever.",
+      "meaningForUser": "As TechBuilder Inc, you cannot reuse, repurpose, or reference any code, architecture, or ideas from this project in future work — even for internal tools. This is broader than a standard work-for-hire clause.",
+      "riskRationale": "The phrase 'throughout the universe, in perpetuity' and inclusion of 'improvements' makes this one of the most sweeping IP assignments possible. Negotiate to exclude pre-existing IP and generic code patterns.",
+      "page": 5,
+      "section": "Section 4.1"
+    },
+    {
+      "id": "c2",
+      "number": "6.2",
+      "title": "Liquidated Damages for Delay",
+      "category": "Liability",
+      "riskLevel": "HIGH",
+      "originalText": "In the event that the Service Provider fails to deliver any Milestone on or before the date specified in Schedule A, the Service Provider shall pay to the Client liquidated damages of USD 5,000 (five thousand dollars) per calendar day of delay, up to a maximum of 30% of the total contract value.",
+      "simpleExplanation": "If you miss a deadline, you pay $5,000 for every day you're late, up to 30% of the total contract price.",
+      "meaningForUser": "On a $200,000 contract, you could owe up to $60,000 in penalties. A 12-day delay wipes out your entire margin. These damages are automatic — no proof of actual loss needed.",
+      "riskRationale": "Liquidated damages at $5k/day are extremely high for software projects. Typical ranges are $500–$1,500/day. The 30% cap provides some protection, but the daily rate needs renegotiating.",
+      "page": 8,
+      "section": "Section 6.2"
+    },
+    {
+      "id": "c3",
+      "number": "12.2",
+      "title": "Automatic Contract Renewal",
+      "category": "Termination",
+      "riskLevel": "HIGH",
+      "originalText": "This Agreement shall automatically renew for successive one (1) year terms unless either party provides written notice of non-renewal no less than ninety (90) days prior to the expiration of the then-current term. Notice must be sent via registered mail to the address on file.",
+      "simpleExplanation": "The contract automatically renews every year unless you give 90 days written notice sent by registered mail. Missing this window locks you in for another full year.",
+      "meaningForUser": "You need to set a reminder for June 1, 2027 to send a registered letter if you want to exit. Email and verbal notice don't count. Missing the window = automatic 12-month extension.",
+      "riskRationale": "90-day notice via registered mail only is unusually strict. Most modern contracts allow email notice. Mark the renewal window — this is a common trap.",
+      "page": 15,
+      "section": "Section 12.2"
+    },
+    {
+      "id": "c4",
+      "number": "9.3",
+      "title": "Non-Solicitation of Employees",
+      "category": "Restrictions",
+      "riskLevel": "HIGH",
+      "originalText": "During the term of this Agreement and for a period of twenty-four (24) months following its termination or expiry, the Service Provider shall not, directly or indirectly, solicit, recruit, or hire any employee, contractor, or consultant of the Client who has had material involvement with the Services.",
+      "simpleExplanation": "For 2 years after the contract ends, you cannot recruit or hire any Acme Corp employee who worked on this project.",
+      "meaningForUser": "If a talented Acme Corp engineer wants to join TechBuilder, you legally cannot recruit them for 2 years post-contract. 'Indirectly' means even using a recruiter could be a violation.",
+      "riskRationale": "24 months is on the longer end for non-solicitation. 12 months is more standard. The 'indirectly' language makes this particularly broad.",
+      "page": 12,
+      "section": "Section 9.3"
+    },
+    {
+      "id": "c5",
+      "number": "5.1",
+      "title": "Payment Terms",
+      "category": "Payment",
+      "riskLevel": "MEDIUM",
+      "originalText": "The Client shall pay each invoice within forty-five (45) days of receipt. In the event of late payment, interest shall accrue at a rate of 1.5% per month on the outstanding balance. The Service Provider reserves the right to suspend Services after thirty (30) days of non-payment.",
+      "simpleExplanation": "Acme Corp has 45 days to pay each invoice. Late payments accrue 1.5% monthly interest. You can pause work after 30 days of non-payment.",
+      "meaningForUser": "Net-45 payment terms are longer than the Net-30 industry standard. If cash flow is a concern, negotiate for Net-30 or milestone-based payments.",
+      "riskRationale": "45-day payment window can strain cash flow on a project with large upfront costs. The right to suspend is a useful protection, but late payment interest is your main lever.",
+      "page": 7,
+      "section": "Section 5.1"
+    },
+    {
+      "id": "c6",
+      "number": "7.1",
+      "title": "Limitation of Liability",
+      "category": "Liability",
+      "riskLevel": "MEDIUM",
+      "originalText": "In no event shall either party be liable to the other for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, even if advised of the possibility of such damages. The total liability of either party shall not exceed the total fees paid in the three (3) months preceding the claim.",
+      "simpleExplanation": "Neither side can sue for lost profits or indirect damages. The most either side can owe is the fees paid in the last 3 months of the contract.",
+      "meaningForUser": "If your software causes Acme Corp to lose a major client worth $1M, they can only sue you for ~3 months of fees. This cap also protects you from runaway liability.",
+      "riskRationale": "The liability cap is mutual and reasonable. However, the 3-month lookback period could be very low in the early stages of the project when payments haven't accumulated yet.",
+      "page": 9,
+      "section": "Section 7.1"
+    },
+    {
+      "id": "c7",
+      "number": "8.1",
+      "title": "Confidentiality Obligations",
+      "category": "Confidentiality",
+      "riskLevel": "MEDIUM",
+      "originalText": "Each party agrees to maintain in strict confidence all Confidential Information received from the other party and to use such Confidential Information solely for the purpose of performing its obligations under this Agreement. This obligation shall survive termination for a period of five (5) years.",
+      "simpleExplanation": "Both sides must keep each other's confidential information secret and only use it for this project. This obligation lasts 5 years after the contract ends.",
+      "meaningForUser": "You cannot share or use Acme Corp's business processes, data, or trade secrets for 5 years post-contract. This applies to your employees too — brief your team.",
+      "riskRationale": "5-year post-termination confidentiality is standard to slightly long (3 years is common). Mutual, so both parties are bound equally.",
+      "page": 11,
+      "section": "Section 8.1"
+    },
+    {
+      "id": "c8",
+      "number": "11.1",
+      "title": "Governing Law & Dispute Resolution",
+      "category": "Dispute Resolution",
+      "riskLevel": "MEDIUM",
+      "originalText": "This Agreement shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of laws principles. Any disputes arising under this Agreement shall be resolved through binding arbitration administered by the American Arbitration Association (AAA) in New York, New York.",
+      "simpleExplanation": "If there's a disagreement, it goes to private arbitration in New York under Delaware law — not to a regular court.",
+      "meaningForUser": "Arbitration in New York could be expensive if you're not based there. It also waives your right to sue in court or join a class action. Delaware law generally favors business agreements.",
+      "riskRationale": "Arbitration clauses limit your options for dispute resolution. AAA arbitration costs can reach $50,000+ for complex disputes. Consider negotiating for mediation first.",
+      "page": 14,
+      "section": "Section 11.1"
+    },
+    {
+      "id": "c9",
+      "number": "2.3",
+      "title": "Change Order Process",
+      "category": "Scope",
+      "riskLevel": "LOW",
+      "originalText": "Any changes to the Scope of Work must be documented in a written Change Order signed by authorized representatives of both parties prior to implementation. The Service Provider may decline any Change Order that would materially impact project timelines or resource allocation.",
+      "simpleExplanation": "Any new features or changes must be agreed to in writing by both sides before work begins. You can refuse changes that would blow your timeline.",
+      "meaningForUser": "This protects you from scope creep. Always insist on a signed Change Order before doing any out-of-scope work, no matter how minor it seems.",
+      "riskRationale": "This is a protective clause for the Service Provider. The right to decline is valuable — just make sure you document all informal requests in writing.",
+      "page": 3,
+      "section": "Section 2.3"
+    },
+    {
+      "id": "c10",
+      "number": "3.1",
+      "title": "Project Kickoff & Timeline",
+      "category": "Deliverables",
+      "riskLevel": "LOW",
+      "originalText": "The parties shall conduct a project kickoff meeting within five (5) business days of the Effective Date. The Service Provider shall deliver the Services in accordance with the schedule set forth in Schedule A, attached hereto and incorporated by reference.",
+      "simpleExplanation": "You must hold a kickoff meeting within 5 business days of signing. All deadlines are defined in the attached Schedule A.",
+      "meaningForUser": "Review Schedule A carefully before signing. The liquidated damages clause (Section 6.2) makes every date in Schedule A a financial liability.",
+      "riskRationale": "Standard and reasonable. The risk is in Schedule A itself — ensure all timelines are realistic given your current team capacity.",
+      "page": 4,
+      "section": "Section 3.1"
+    }
+  ],
+
+  "chatHistory": []
+}

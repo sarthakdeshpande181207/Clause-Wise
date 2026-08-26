@@ -1,0 +1,133 @@
+/* ============================================================
+   CLAUSE WISE — THEME TOKENS
+   Aesthetic: "Modern Ink"
+   Dark: Ink & Parchment | Light: Aged Paper
+   ============================================================ */
+
+/* ── GOOGLE FONTS ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ── DARK MODE (DEFAULT) — "Ink & Parchment" ─────────────── */
+:root,
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-primary: #0C0B0A;
+  /* warm near-black (ink, not void) */
+  --bg-surface: #141210;
+  /* slightly lifted, warm paper tint */
+  --bg-elevated: #1E1C18;
+  /* modals, dropdowns, code blocks */
+  --bg-hover: #252219;
+  /* interactive hover state */
+
+  /* Borders */
+  --border-subtle: #2A2620;
+  /* barely-there dividers */
+  --border-strong: #3D3830;
+  /* visible separators */
+  --border-focus: #C9A84C;
+  /* keyboard focus ring */
+
+  /* Gold Accent — Legal Authority */
+  --accent-gold: #C9A84C;
+  /* primary CTA, links */
+  --accent-gold-dim: #8A6E2F;
+  /* hover/pressed */
+  --accent-gold-bg: #1A1508;
+  /* gold-tinted surface */
+  --accent-gold-text: #0C0B0A;
+  /* text on gold buttons */
+
+  /* Risk Taxonomy */
+  --risk-high: #C0392B;
+  --risk-high-bg: #1A0A08;
+  --risk-high-border: #C0392B;
+  --risk-medium: #B07D1A;
+  --risk-medium-bg: #181208;
+  --risk-medium-border: #B07D1A;
+  --risk-low: #2E7D57;
+  --risk-low-bg: #081510;
+  --risk-low-border: #2E7D57;
+  --risk-info: #C9A84C;
+  --risk-info-bg: #1A1508;
+  --risk-info-border: #C9A84C;
+
+  /* Text */
+  --text-primary: #EDE8DC;
+  /* warm off-white (not pure white) */
+  --text-secondary: #9C9080;
+  /* warm medium gray */
+  --text-muted: #5C5548;
+  /* warm dim gray */
+  --text-inverse: #0C0B0A;
+  /* text on gold buttons */
+  --text-gold: #C9A84C;
+  /* gold-colored text */
+
+  /* Scrollbar */
+  --scrollbar-track: #141210;
+  --scrollbar-thumb: #3D3830;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(20, 18, 16, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Landing Page Background */
+  --landing-bg: url('/bg_dark.png');
+}
+
+/* ── LIGHT MODE — "Aged Paper" ───────────────────────────── */
+[data-theme="light"] {
+  /* Backgrounds */
+  --bg-primary: #F5F0E8;
+  /* warm cream, not #FFFFFF */
+  --bg-surface: #FDFAF4;
+  /* slightly brighter cream */
+  --bg-elevated: #EDEAE0;
+  /* modals, inset panels */
+  --bg-hover: #E8E2D5;
+
+  /* Borders */
+  --border-subtle: #D8D0C0;
+  --border-strong: #B8AE9C;
+  --border-focus: #8A6120;
+
+  /* Gold Accent — darker for light mode contrast */
+  --accent-gold: #8A6120;
+  --accent-gold-dim: #6B4A18;
+  --accent-gold-bg: #F0E8D4;
+  --accent-gold-text: #FDFAF4;
+
+  /* Risk Taxonomy */
+  --risk-high: #A93226;
+  --risk-high-bg: #FDF0EE;
+  --risk-high-border: #A93226;
+  --risk-medium: #956B15;
+  --risk-medium-bg: #FDF5E6;
+  --risk-medium-border: #956B15;
+  --risk-low: #1E6B42;
+  --risk-low-bg: #EDF7F2;
+  --risk-low-border: #1E6B42;
+  --risk-info: #8A6120;
+  --risk-info-bg: #F0E8D4;
+  --risk-info-border: #8A6120;
+
+  /* Text */
+  --text-primary: #1A1410;
+  /* warm near-black */
+  --text-secondary: #5C5040;
+  --text-muted: #9C9080;
+  --text-inverse: #FDFAF4;
+  --text-gold: #8A6120;
+
+  /* Scrollbar */
+  --scrollbar-track: #EDEAE0;
+  --scrollbar-thumb: #B8AE9C;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(253, 250, 244, 0.65);
+  --glass-border: rgba(0, 0, 0, 0.08);
+
+  /* Landing Page Background */
+  --landing-bg: url('/bg_custom.png');
+}

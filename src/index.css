@@ -1,0 +1,4 @@
+/* Import design system — order matters */
+@import './styles/themes.css';
+@import './styles/global.css';
+@import './styles/animations.css';

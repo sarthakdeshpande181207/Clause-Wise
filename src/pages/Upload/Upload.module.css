@@ -1,0 +1,273 @@
+.page {
+  position: relative;
+  min-height: calc(100vh - 58px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 0;
+  overflow: hidden;
+}
+
+/* ── ABSTRACT BACKGROUND ──────────────────────────────────── */
+.abstractBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.abstractOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.55;
+  animation: orbFloat 12s ease-in-out infinite alternate;
+}
+
+.orb1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, hsl(42, 80%, 55%) 0%, transparent 65%);
+  top: -15%;
+  right: -10%;
+  animation-duration: 15s;
+}
+
+.orb2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, hsl(220, 60%, 50%) 0%, transparent 65%);
+  bottom: -10%;
+  left: -10%;
+  animation-duration: 18s;
+  animation-delay: -5s;
+}
+
+.orb3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, hsl(280, 50%, 45%) 0%, transparent 65%);
+  top: 45%;
+  left: 35%;
+  animation-duration: 14s;
+  animation-delay: -8s;
+  opacity: 0.35;
+}
+
+@keyframes orbFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(25px, -15px) scale(1.04); }
+  100% { transform: translate(-15px, 10px) scale(0.96); }
+}
+
+/* ── INNER ────────────────────────────────────────────────── */
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: contentFadeIn 0.4s ease-out forwards;
+}
+
+@keyframes contentFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.header { text-align: center; }
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.sub { font-size: 14px; color: var(--text-secondary); }
+
+/* ── DROP ZONE ────────────────────────────────────────────── */
+.dropZone {
+  border: 2px dashed var(--border-strong);
+  border-radius: 12px;
+  padding: 48px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+}
+
+.dropZone:hover {
+  border-color: var(--accent-gold-dim);
+  background: var(--accent-gold-bg);
+  transform: translateY(-2px);
+}
+
+.dragOver {
+  border-color: var(--accent-gold) !important;
+  background: var(--accent-gold-bg) !important;
+  transform: translateY(-2px) !important;
+}
+
+.hasFile {
+  cursor: default;
+  border-style: solid;
+  border-color: var(--risk-low-border);
+  background: var(--risk-low-bg);
+}
+
+.hasFile:hover {
+  transform: none;
+}
+
+.hasError {
+  border-color: var(--risk-high-border);
+  background: var(--risk-high-bg);
+}
+
+.hiddenInput { display: none; }
+
+/* ── DROP CONTENT ─────────────────────────────────────────── */
+.dropContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.uploadIcon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.uploadIconActive {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold-dim);
+  background: var(--accent-gold-bg);
+  transform: scale(1.08);
+}
+
+.dropTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.dropSub { font-size: 13px; color: var(--text-muted); }
+
+.formats {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── FILE PREVIEW ─────────────────────────────────────────── */
+.filePreview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fileIcon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--risk-low-bg);
+  border: 1px solid var(--risk-low-border);
+  border-radius: 8px;
+  color: var(--risk-low);
+  flex-shrink: 0;
+}
+
+.fileInfo { flex: 1; overflow: hidden; }
+
+.fileName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fileSize { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+.checkIcon { color: var(--risk-low); flex-shrink: 0; }
+
+.removeBtn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.removeBtn:hover { background: var(--risk-high-bg); color: var(--risk-high); border-color: var(--risk-high-border); }
+
+/* ── ERROR ────────────────────────────────────────────────── */
+.errorMsg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--risk-high);
+  padding: 10px 14px;
+  background: var(--risk-high-bg);
+  border: 1px solid var(--risk-high-border);
+  border-radius: 6px;
+  animation: contentFadeIn 0.25s ease-out forwards;
+}
+
+/* ── ACTIONS ──────────────────────────────────────────────── */
+.actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+.note { font-size: 12px; color: var(--text-muted); text-align: center; }
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .page {
+    padding: 24px 0;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .dropZone {
+    padding: 36px 16px;
+  }
+}
