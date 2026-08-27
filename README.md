@@ -15,39 +15,6 @@ ClauseWise is a modern, responsive web application built for the Smart India Hac
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v16 or higher)
-- A Google Gemini API Key
-
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/sarthakdeshpande181207/Clause-Wise.git
-   cd Clause-Wise
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Set up Environment Variables:**
-   Create a `.env.local` file in the root directory and add your Gemini API key:
-   ```env
-   VITE_GEMINI_API_KEY=your_gemini_api_key_here
-   ```
-
-4. **Start the Development Server:**
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:5173` in your browser to view the application.
-
----
-
 ## 🛠️ Technology Stack
 
 - **Frontend Framework**: React + Vite
