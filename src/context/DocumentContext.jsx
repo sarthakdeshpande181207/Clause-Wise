@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   status: 'idle',      // idle | uploading | processing | ready | error
   analysisData: null,  // full mock analysis result
   error: null,
+  rawDocumentText: '',
 };
 
 export function DocumentProvider({ children }) {
@@ -25,6 +26,10 @@ export function DocumentProvider({ children }) {
       status: 'idle',
       error: null,
     }));
+  };
+
+  const setRawDocumentText = (text) => {
+    setDoc(prev => ({ ...prev, rawDocumentText: text }));
   };
 
   const startProcessing = () => {
@@ -49,6 +54,7 @@ export function DocumentProvider({ children }) {
     <DocumentContext.Provider value={{
       doc,
       setFile,
+      setRawDocumentText,
       startProcessing,
       setAnalysisData,
       setError,

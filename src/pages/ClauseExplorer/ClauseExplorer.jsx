@@ -4,6 +4,7 @@ import { useDocument } from '../../context/DocumentContext';
 import { Search, Filter, ChevronRight, AlertTriangle, Shield, CheckCircle, Info } from 'lucide-react';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
+import Helmet from '../../components/Helmet/Helmet';
 import styles from './ClauseExplorer.module.css';
 
 const ICONS = {
@@ -42,6 +43,17 @@ export default function ClauseExplorer() {
 
   return (
     <div className={`${styles.page} page-enter`}>
+      <Helmet
+        title="Clause Explorer – ClauseWise"
+        description="Explore and review all extracted clauses from your document."
+      />
+
+      {/* Abstract Background */}
+      <div className={styles.abstractBg} aria-hidden="true">
+        <div className={`${styles.abstractOrb} ${styles.orb1}`} />
+        <div className={`${styles.abstractOrb} ${styles.orb2}`} />
+      </div>
+
       <div className={styles.layout}>
         {/* SIDEBAR LIST */}
         <aside className={styles.sidebar}>

@@ -28,14 +28,14 @@
   --border-focus: #C9A84C;
   /* keyboard focus ring */
 
-  /* Gold Accent — Legal Authority */
-  --accent-gold: #C9A84C;
+  /* Gold Accent — Legal Authority (Updated to Gold for dark theme) */
+  --accent-gold: #D4AF37;
   /* primary CTA, links */
-  --accent-gold-dim: #8A6E2F;
+  --accent-gold-dim: #997D21;
   /* hover/pressed */
-  --accent-gold-bg: #1A1508;
+  --accent-gold-bg: #1F1908;
   /* gold-tinted surface */
-  --accent-gold-text: #0C0B0A;
+  --accent-gold-text: #0C0A03;
   /* text on gold buttons */
 
   /* Risk Taxonomy */
@@ -73,7 +73,7 @@
   --glass-border: rgba(255, 255, 255, 0.08);
 
   /* Landing Page Background */
-  --landing-bg: url('/bg_dark.png');
+  --landing-bg: url('/bg_dark_new.jpg');
 }
 
 /* ── LIGHT MODE — "Aged Paper" ───────────────────────────── */
@@ -129,5 +129,5 @@
   --glass-border: rgba(0, 0, 0, 0.08);
 
   /* Landing Page Background */
-  --landing-bg: url('/bg_custom.png');
+  --landing-bg: url('/lp_light_1.png');
 }

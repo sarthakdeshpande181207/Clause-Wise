@@ -2,31 +2,11 @@ import { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, FileText, BookOpen, Scale } from 'lucide-react';
 import { useDocument } from '../../context/DocumentContext';
 import Helmet from '../../components/Helmet/Helmet';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import styles from './AskDocument.module.css';
 
-/* ── Mock Q&A pairs for demo ──────────────────────────────── */
-const MOCK_ANSWERS = {
-  'what is the termination clause': {
-    text: 'The agreement automatically renews for successive 1-year terms unless either party provides written notice of non-renewal at least 90 days before expiry. Notice must be sent via registered mail — email or verbal notice is not sufficient.',
-    source: 'Section 12.2 — Automatic Contract Renewal',
-    page: 15,
-  },
-  'what are the penalties for delay': {
-    text: 'If TechBuilder Inc fails to deliver any milestone on time, liquidated damages of $5,000 per calendar day of delay apply, capped at 30% of the total contract value. On a $200,000 contract, this means up to $60,000 in penalties.',
-    source: 'Section 6.2 — Liquidated Damages for Delay',
-    page: 8,
-  },
-  'who owns the intellectual property': {
-    text: 'The Service Provider irrevocably assigns all right, title, and interest in all deliverables to the Client, including all intellectual property rights "throughout the universe, in perpetuity." This includes code, designs, inventions, and improvements.',
-    source: 'Section 4.1 — Intellectual Property Assignment',
-    page: 5,
-  },
-  'what are the payment terms': {
-    text: 'The Client shall pay each invoice within 45 days of receipt (Net-45). Late payments accrue 1.5% monthly interest. The Service Provider may suspend services after 30 days of non-payment.',
-    source: 'Section 5.1 — Payment Terms',
-    page: 7,
-  },
-};
+// Initialize Gemini SDK with API key
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || '');
 
 const SUGGESTED_QUESTIONS = [
   'What is the termination clause?',
@@ -34,18 +14,6 @@ const SUGGESTED_QUESTIONS = [
   'Who owns the intellectual property?',
   'What are the payment terms?',
 ];
-
-function findMockAnswer(question) {
-  const q = question.toLowerCase().replace(/[?!.,]/g, '').trim();
-  for (const [key, value] of Object.entries(MOCK_ANSWERS)) {
-    if (q.includes(key) || key.includes(q)) return value;
-  }
-  return {
-    text: `Based on the document analysis, I couldn't find a specific clause matching your question. Try asking about termination, penalties, IP ownership, or payment terms.`,
-    source: null,
-    page: null,
-  };
-}
 
 export default function AskDocument() {
   const { doc } = useDocument();
@@ -59,21 +27,64 @@ export default function AskDocument() {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
-  const handleSend = (text) => {
+  const handleSend = async (text) => {
     const question = text || input.trim();
     if (!question || isTyping) return;
 
-    /* Add user message */
+    if (!import.meta.env.VITE_GEMINI_API_KEY) {
+      setMessages(prev => [...prev, { role: 'user', text: question }]);
+      setMessages(prev => [...prev, { role: 'ai', text: 'Error: VITE_GEMINI_API_KEY is not set in your .env.local file. Please add your key and restart the dev server.' }]);
+      return;
+    }
+
     setMessages(prev => [...prev, { role: 'user', text: question }]);
     setInput('');
     setIsTyping(true);
 
-    /* Simulate AI response delay */
-    setTimeout(() => {
-      const answer = findMockAnswer(question);
-      setMessages(prev => [...prev, { role: 'ai', ...answer }]);
+    try {
+      const clauses = doc?.analysisData?.clauses || [];
+      const documentContext = clauses.map(c => `[Section ${c.number}: ${c.title}]\n${c.originalText || c.text || ''}`).join('\n\n');
+      
+      const systemPrompt = `You are a helpful legal AI assistant for the ClauseWise app. 
+You will be provided with the extracted clauses from a legal document. 
+Use ONLY the provided document clauses to answer the user's questions. 
+If the answer cannot be found in the provided document, politely state that you cannot find the answer in the document. Do not invent answers.
+
+Document Clauses:
+${documentContext}`;
+
+      // Initialize model normally
+      const dynamicModel = genAI.getGenerativeModel({ 
+        model: "gemini-3.6-flash",
+      });
+
+      // Inject system prompt as the first interaction in history
+      const historyMessages = [
+        { role: 'user', parts: [{ text: systemPrompt }] },
+        { role: 'model', parts: [{ text: "Understood. I will use ONLY the provided document clauses to answer your questions." }] },
+        ...messages.map(m => ({
+          role: m.role === 'ai' ? 'model' : 'user',
+          parts: [{ text: m.text }],
+        }))
+      ];
+
+      const chat = dynamicModel.startChat({
+        history: historyMessages,
+        generationConfig: {
+          temperature: 0.2,
+        }
+      });
+
+      const result = await chat.sendMessage(question);
+      const aiResponse = result.response.text();
+      
+      setMessages(prev => [...prev, { role: 'ai', text: aiResponse }]);
+    } catch (error) {
+      console.error("Gemini API Error:", error);
+      setMessages(prev => [...prev, { role: 'ai', text: 'Sorry, I encountered an error while trying to process your request. Please check your API key and try again.' }]);
+    } finally {
       setIsTyping(false);
-    }, 1200 + Math.random() * 800);
+    }
   };
 
   const handleKeyDown = (e) => {

@@ -58,8 +58,6 @@ export default function Upload() {
     setIsAnalyzing(true);
     startProcessing();
     navigate('/processing');
-    // Simulate processing delay, then load mock data
-    setTimeout(() => setAnalysisData(sampleData), 3500);
   };
 
   return (

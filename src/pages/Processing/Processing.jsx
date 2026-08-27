@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle, Loader, AlertCircle } from 'lucide-react';
 import Button from '../../components/ui/Button/Button';
+import Helmet from '../../components/Helmet/Helmet';
 import { useDocument } from '../../context/DocumentContext';
+import { extractTextFromFile } from '../../utils/documentParser';
+import { analyzeDocumentWithGemini } from '../../utils/geminiAnalyzer';
 import styles from './Processing.module.css';
 
 const STEPS = [
@@ -15,32 +18,69 @@ const STEPS = [
 
 export default function Processing() {
   const navigate = useNavigate();
-  const { doc } = useDocument();
+  const { doc, setRawDocumentText, setAnalysisData, setError } = useDocument();
   const [completedSteps, setCompletedSteps] = useState([]);
   const [activeStep, setActiveStep] = useState(1);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    let elapsed = 0;
-    const totalDuration = STEPS.reduce((s, st) => s + st.duration, 0);
+    let isCancelled = false;
 
-    STEPS.forEach((step, i) => {
-      setTimeout(() => {
-        setActiveStep(step.id);
-        setCompletedSteps(prev => [...prev, ...STEPS.slice(0, i).map(s => s.id)]);
-      }, elapsed);
-      elapsed += step.duration;
-    });
+    async function processDocument() {
+      if (!doc.file) {
+        if (!isCancelled) navigate('/upload');
+        return;
+      }
 
-    // Progress bar
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        const next = prev + (100 / (totalDuration / 50));
-        return next >= 100 ? 100 : next;
-      });
-    }, 50);
+      try {
+        // Step 1: Document Received
+        setActiveStep(1);
+        setProgress(20);
+        
+        // Step 2: Extracting Text
+        setTimeout(() => setActiveStep(2), 500);
+        setProgress(40);
+        const rawText = await extractTextFromFile(doc.file);
+        
+        if (isCancelled) return;
+        setRawDocumentText(rawText);
 
-    return () => clearInterval(interval);
+        // Step 3 & 4 & 5: AI Analysis
+        setActiveStep(3);
+        setProgress(60);
+        
+        const analysisResult = await analyzeDocumentWithGemini(rawText, doc.fileName);
+        
+        if (isCancelled) return;
+        
+        setActiveStep(5);
+        setProgress(100);
+        setCompletedSteps([1, 2, 3, 4, 5]);
+        
+        // Add required fields
+        analysisResult.pageCount = 1;
+        analysisResult.wordCount = rawText.split(/\s+/).length;
+        analysisResult.uploadDate = new Date().toISOString();
+        analysisResult.parties = analysisResult.parties || [];
+        analysisResult.keyDates = analysisResult.keyDates || [];
+        analysisResult.clauses = analysisResult.clauses || [];
+        if (!analysisResult.stats) analysisResult.stats = { totalClauses: 0, highRisk: 0, mediumRisk: 0, lowRisk: 0, keyDates: 0 };
+        
+        setAnalysisData(analysisResult);
+
+      } catch (err) {
+        console.error(err);
+        if (!isCancelled) {
+          setError(err.message || 'Failed to process document');
+        }
+      }
+    }
+
+    processDocument();
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   // Navigate when analysis data arrives
@@ -53,6 +93,11 @@ export default function Processing() {
   if (doc.status === 'error') {
     return (
       <div className={`${styles.page} page-enter`}>
+        <Helmet title="Processing – ClauseWise" />
+        <div className={styles.abstractBg} aria-hidden="true">
+          <div className={`${styles.abstractOrb} ${styles.orb1}`} />
+          <div className={`${styles.abstractOrb} ${styles.orb2}`} />
+        </div>
         <div className={styles.errorState}>
           <div className={styles.errorIcon}>
             <AlertCircle size={32} strokeWidth={1.5} />
@@ -67,6 +112,13 @@ export default function Processing() {
 
   return (
     <div className={`${styles.page} page-enter`}>
+      <Helmet title="Processing – ClauseWise" />
+      {/* Abstract Background */}
+      <div className={styles.abstractBg} aria-hidden="true">
+        <div className={`${styles.abstractOrb} ${styles.orb1}`} />
+        <div className={`${styles.abstractOrb} ${styles.orb2}`} />
+      </div>
+
       <div className={styles.inner}>
         {/* Progress bar */}
         <div className={styles.progressWrap}>
