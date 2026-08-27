@@ -7,6 +7,7 @@ import Landing          from '../pages/Landing/Landing';
 import Upload           from '../pages/Upload/Upload';
 import Processing       from '../pages/Processing/Processing';
 import Dashboard        from '../pages/Dashboard/Dashboard';
+import Summary          from '../pages/Summary/Summary';
 import ClauseExplorer   from '../pages/ClauseExplorer/ClauseExplorer';
 import ImportantClauses from '../pages/ImportantClauses/ImportantClauses';
 import AskDocument      from '../pages/AskDocument/AskDocument';
@@ -31,6 +32,7 @@ export default function AppRouter() {
 
           {/* Protected — require loaded document */}
           <Route path="/dashboard"         element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/summary"           element={<ProtectedRoute><Summary /></ProtectedRoute>} />
           <Route path="/clauses"           element={<ProtectedRoute><ClauseExplorer /></ProtectedRoute>} />
           <Route path="/important-clauses" element={<ProtectedRoute><ImportantClauses /></ProtectedRoute>} />
           <Route path="/ask"               element={<ProtectedRoute><AskDocument /></ProtectedRoute>} />

@@ -5,7 +5,7 @@ import Button from '../../ui/Button/Button';
 import { useDocument } from '../../../context/DocumentContext';
 import styles from './Navbar.module.css';
 
-const ANALYSIS_ROUTES = ['/dashboard', '/clauses', '/important-clauses', '/ask'];
+const ANALYSIS_ROUTES = ['/dashboard', '/clauses', '/important-clauses', '/ask', '/summary'];
 
 export default function Navbar() {
   const location = useLocation();
@@ -31,6 +31,7 @@ export default function Navbar() {
             <Link to="/clauses"           className={`${styles.navLink} ${location.pathname === '/clauses' ? styles.active : ''}`}>Clauses</Link>
             <Link to="/important-clauses" className={`${styles.navLink} ${location.pathname === '/important-clauses' ? styles.active : ''}`}>Flagged</Link>
             <Link to="/ask"               className={`${styles.navLink} ${location.pathname === '/ask' ? styles.active : ''}`}>Ask</Link>
+            <Link to="/summary"           className={`${styles.navLink} ${location.pathname === '/summary' ? styles.active : ''}`}>Summary</Link>
           </nav>
         )}
 

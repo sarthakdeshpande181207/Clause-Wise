@@ -14,6 +14,14 @@ export async function analyzeDocumentWithGemini(rawText, fileName) {
       "documentType": "Type of agreement (e.g. NDA, Service Agreement)",
       "parties": ["Party 1 Name", "Party 2 Name"],
       "summary": "A 2-3 sentence summary of the document and its main purpose.",
+      "detailedSummary": {
+        "documentClassification": "Exact type (e.g., NDA, Employment Agreement, Will)",
+        "simpleTakeaway": "A 1-2 sentence explanation of what this document actually does, in plain English for a layperson.",
+        "partiesInvolved": ["Who Party A is", "Who Party B is"],
+        "keyObligations": ["What you have to do", "What they have to do"],
+        "importantTerms": ["Term 1: simple meaning", "Term 2: simple meaning"],
+        "durationAndTermination": "How long it lasts and how to cancel it."
+      },
       "stats": {
         "totalClauses": number,
         "highRisk": number,

@@ -86,6 +86,14 @@ export default function Processing() {
         analysisResult.parties = analysisResult.parties || [];
         analysisResult.keyDates = analysisResult.keyDates || [];
         analysisResult.clauses = analysisResult.clauses || [];
+        analysisResult.detailedSummary = analysisResult.detailedSummary || {
+          documentClassification: analysisResult.documentType || 'Unknown Document',
+          simpleTakeaway: analysisResult.summary || 'No detailed summary provided.',
+          partiesInvolved: analysisResult.parties || [],
+          keyObligations: [],
+          importantTerms: [],
+          durationAndTermination: 'Not specified'
+        };
         if (!analysisResult.stats) analysisResult.stats = { totalClauses: 0, highRisk: 0, mediumRisk: 0, lowRisk: 0, keyDates: 0 };
         
         setAnalysisData(analysisResult);
