@@ -35,21 +35,43 @@ export default function Processing() {
       try {
         // Step 1: Document Received
         setActiveStep(1);
-        setProgress(20);
+        setProgress(15);
+        await new Promise(r => setTimeout(r, 600));
         
+        if (isCancelled) return;
+        setCompletedSteps([1]);
+        setActiveStep(2);
+        setProgress(30);
+
         // Step 2: Extracting Text
-        setTimeout(() => setActiveStep(2), 500);
-        setProgress(40);
         const rawText = await extractTextFromFile(doc.file);
         
         if (isCancelled) return;
         setRawDocumentText(rawText);
+        setCompletedSteps([1, 2]);
+        setActiveStep(3);
+        setProgress(50);
+
+        // Start artificial progression for UI while Gemini thinks
+        let aiFinished = false;
+        const advanceUI = async () => {
+          await new Promise(r => setTimeout(r, 2000));
+          if (aiFinished || isCancelled) return;
+          setCompletedSteps([1, 2, 3]);
+          setActiveStep(4);
+          setProgress(75);
+          
+          await new Promise(r => setTimeout(r, 2500));
+          if (aiFinished || isCancelled) return;
+          setCompletedSteps([1, 2, 3, 4]);
+          setActiveStep(5);
+          setProgress(90);
+        };
+        advanceUI();
 
         // Step 3 & 4 & 5: AI Analysis
-        setActiveStep(3);
-        setProgress(60);
-        
         const analysisResult = await analyzeDocumentWithGemini(rawText, doc.fileName);
+        aiFinished = true;
         
         if (isCancelled) return;
         
