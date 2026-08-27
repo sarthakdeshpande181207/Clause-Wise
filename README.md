@@ -1,16 +1,73 @@
-# React + Vite
+# ⚖️ ClauseWise
+**AI-Powered Legal Document Analysis & Chatbot**
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+ClauseWise is a modern, responsive web application built for the Smart India Hackathon (SIH) 2026. It allows users to upload legal documents and instantly receive AI-driven analysis, risk assessments, and simple explanations of complex clauses.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- **📄 Client-Side Document Parsing**: Extracts raw text from `.docx`, `.pdf`, and `.txt` files entirely within the browser using `mammoth` and `pdf.js`—no backend required, ensuring maximum privacy and speed for the prototype.
+- **🤖 Gemini AI Integration**: Utilizes Google's `gemini-3.6-flash` model to perform deep structural analysis of legal texts, categorizing clauses, assigning risk levels, and identifying key dates.
+- **💬 Ask Your Document**: A dynamic, RAG-style (Retrieval-Augmented Generation) chatbot that allows users to ask specific questions about their uploaded document. The AI strictly uses the extracted document clauses to provide accurate, hallucination-free answers.
+- **📊 Interactive Dashboard**: Visualizes document statistics, highlights high-risk clauses, and tracks key dates on an intuitive, glassmorphic UI.
+- **🔍 Clause Explorer**: A dedicated interface to review every clause side-by-side with its original text, a simple explanation, and a risk rationale.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Prerequisites
+- Node.js (v16 or higher)
+- A Google Gemini API Key
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/sarthakdeshpande181207/Clause-Wise.git
+   cd Clause-Wise
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Set up Environment Variables:**
+   Create a `.env.local` file in the root directory and add your Gemini API key:
+   ```env
+   VITE_GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+4. **Start the Development Server:**
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:5173` in your browser to view the application.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Frontend Framework**: React + Vite
+- **Styling**: Vanilla CSS (CSS Modules) with a modern Glassmorphism design system
+- **Icons**: Lucide React
+- **AI Integration**: `@google/generative-ai` (Gemini SDK)
+- **Document Parsing**: 
+  - `mammoth` (for DOCX)
+  - `pdfjs-dist` (for PDF)
+
+---
+
+## 💡 How It Works (MVP Architecture)
+
+This prototype operates entirely in the frontend for maximum speed and simplicity during the SIH 2026 internal rounds:
+1. **Upload**: The user uploads a document.
+2. **Extraction**: `documentParser.js` extracts the text in the browser.
+3. **Analysis**: `geminiAnalyzer.js` prompts Gemini to categorize the text into a structured JSON format containing clauses and risk levels.
+4. **Display**: The React UI consumes this JSON to populate the Dashboard, Clause Explorer, and Chatbot context.
+
+---
+
+*Built with ❤️ for SIH 2026*
