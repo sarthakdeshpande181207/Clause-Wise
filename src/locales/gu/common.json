@@ -1,0 +1,58 @@
+{
+  "app_name": "ClauseWise",
+  "tagline": "વાર્તાલાપ આધારિત કાનૂની દસ્તાવેજ સરળીકરણ",
+
+  "nav_overview": "વિહંગાવલોકન",
+  "nav_clauses": "કલમો",
+  "nav_flagged": "ચિહ્નિત",
+  "nav_ask": "પૂછો",
+  "nav_summary": "સારાંશ",
+  "nav_analyze": "દસ્તાવેજ વિશ્લેષણ કરો",
+  "select_language": "ભાષા પસંદ કરો",
+
+  "upload_document": "દસ્તાવેજ અપલોડ કરો",
+  "upload_hint": "ફાઇલ ખેંચો અથવા ક્લિક કરો",
+  "upload_supported": "PDF, DOCX, TXT સમર્થિત",
+
+  "original_text": "મૂળ કાનૂની લખાણ",
+  "simplified_explanation": "સરળ ભાષામાં સ્પષ્ટીકરણ",
+  "key_points": "મુખ્ય મુદ્દા",
+  "risk_level": "જોખમ સ્તર",
+  "risk_explanation": "જોખમ સ્પષ્ટીકરણ",
+  "recommendation": "ભલામણ",
+  "ask_question": "પ્રશ્ન પૂછો",
+  "ask_placeholder": "તમારા દસ્તાવેજ વિશે પ્રશ્ન પૂછો...",
+  "send": "મોકલો",
+
+  "clause_explorer": "કલમ એક્સ્પ્લોરર",
+  "search_clauses": "કલમો શોધો...",
+  "filter_all": "બધા",
+  "filter_high": "ઉચ્ચ",
+  "filter_medium": "મધ્યમ",
+  "filter_low": "નીચું",
+
+  "plain_english": "સરળ ભાષામાં સારાંશ",
+  "translating": "અનુવાદ થઈ રહ્યો છે...",
+  "translation_failed": "અનુવાદ અસ્થાયી રૂપે અનુપલબ્ધ છે.",
+  "retry": "ફરી પ્રયાસ કરો",
+  "translated_in": "માં અનુવાદિત",
+
+  "parties_involved": "સંબંધિત પક્ષો",
+  "key_obligations": "મુખ્ય જવાબદારીઓ",
+  "important_terms": "મહત્વપૂર્ણ શરતો",
+  "duration_termination": "અવધિ અને સમાપ્તિ",
+
+  "chatbot_title": "તમારા દસ્તાવેજને પૂછો",
+  "chatbot_subtitle": "તમારા અપલોડ કરેલ કાનૂની દસ્તાવેજમાંથી તાત્કાલિક જવાબ મેળવો.",
+  "chatbot_empty_title": "વાર્તાલાપ શરૂ કરો",
+  "chatbot_empty_hint": "સરળ ભાષામાં તમારા દસ્તાવેજ વિશે કોઈ પણ પ્રશ્ન પૂછો.",
+  "suggested_q1": "સમાપ્તિ કલમ શું છે?",
+  "suggested_q2": "વિલંબ માટે દંડ શું છે?",
+  "suggested_q3": "બૌદ્ધિક સંપત્તિનો માલિક કોણ છે?",
+  "suggested_q4": "ચૂકવણીની શરતો શું છે?",
+
+  "disclaimer": "આ સ્પષ્ટીકરણ માત્ર માહિતી માટે છે અને કાનૂની સલાહ નથી.",
+  "risk_high": "ઉચ્ચ જોખમ",
+  "risk_medium": "મધ્યમ જોખમ",
+  "risk_low": "નીચું જોખમ"
+}

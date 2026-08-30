@@ -1,0 +1,58 @@
+{
+  "app_name": "ClauseWise",
+  "tagline": "ಸಂವಾದಾತ್ಮಕ ಕಾನೂನು ದಾಖಲೆ ಸರಳೀಕರಣ",
+
+  "nav_overview": "ಅವಲೋಕನ",
+  "nav_clauses": "ಷರತ್ತುಗಳು",
+  "nav_flagged": "ಗುರುತಿಸಲಾಗಿದೆ",
+  "nav_ask": "ಕೇಳಿ",
+  "nav_summary": "ಸಾರಾಂಶ",
+  "nav_analyze": "ದಾಖಲೆ ವಿಶ್ಲೇಷಿಸಿ",
+  "select_language": "ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ",
+
+  "upload_document": "ದಾಖಲೆ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+  "upload_hint": "ಫೈಲ್ ಎಳೆಯಿರಿ ಅಥವಾ ಕ್ಲಿಕ್ ಮಾಡಿ",
+  "upload_supported": "PDF, DOCX, TXT ಬೆಂಬಲಿತ",
+
+  "original_text": "ಮೂಲ ಕಾನೂನು ಪಠ್ಯ",
+  "simplified_explanation": "ಸರಳ ಭಾಷೆಯಲ್ಲಿ ವಿವರಣೆ",
+  "key_points": "ಪ್ರಮುಖ ಅಂಶಗಳು",
+  "risk_level": "ಅಪಾಯದ ಮಟ್ಟ",
+  "risk_explanation": "ಅಪಾಯದ ವಿವರಣೆ",
+  "recommendation": "ಶಿಫಾರಸು",
+  "ask_question": "ಪ್ರಶ್ನೆ ಕೇಳಿ",
+  "ask_placeholder": "ನಿಮ್ಮ ದಾಖಲೆಯ ಬಗ್ಗೆ ಪ್ರಶ್ನೆ ಕೇಳಿ...",
+  "send": "ಕಳುಹಿಸಿ",
+
+  "clause_explorer": "ಷರತ್ತು ಎಕ್ಸ್‌ಪ್ಲೋರರ್",
+  "search_clauses": "ಷರತ್ತುಗಳನ್ನು ಹುಡುಕಿ...",
+  "filter_all": "ಎಲ್ಲಾ",
+  "filter_high": "ಹೆಚ್ಚು",
+  "filter_medium": "ಮಧ್ಯಮ",
+  "filter_low": "ಕಡಿಮೆ",
+
+  "plain_english": "ಸರಳ ಭಾಷೆಯಲ್ಲಿ ಸಾರಾಂಶ",
+  "translating": "ಅನುವಾದಿಸಲಾಗುತ್ತಿದೆ...",
+  "translation_failed": "ಅನುವಾದ ತಾತ್ಕಾಲಿಕವಾಗಿ ಲಭ್ಯವಿಲ್ಲ.",
+  "retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+  "translated_in": "ನಲ್ಲಿ ಅನುವಾದಿಸಲಾಗಿದೆ",
+
+  "parties_involved": "ಸಂಬಂಧಿತ ಪಕ್ಷಗಳು",
+  "key_obligations": "ಪ್ರಮುಖ ಜವಾಬ್ದಾರಿಗಳು",
+  "important_terms": "ಮಹತ್ವದ ನಿಯಮಗಳು",
+  "duration_termination": "ಅವಧಿ ಮತ್ತು ಮುಕ್ತಾಯ",
+
+  "chatbot_title": "ನಿಮ್ಮ ದಾಖಲೆಯನ್ನು ಕೇಳಿ",
+  "chatbot_subtitle": "ನಿಮ್ಮ ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಕಾನೂನು ದಾಖಲೆಯಿಂದ ತಕ್ಷಣದ ಉತ್ತರಗಳನ್ನು ಪಡೆಯಿರಿ.",
+  "chatbot_empty_title": "ಸಂಭಾಷಣೆ ಪ್ರಾರಂಭಿಸಿ",
+  "chatbot_empty_hint": "ಸರಳ ಭಾಷೆಯಲ್ಲಿ ನಿಮ್ಮ ದಾಖಲೆಯ ಬಗ್ಗೆ ಯಾವುದೇ ಪ್ರಶ್ನೆ ಕೇಳಿ.",
+  "suggested_q1": "ಮುಕ್ತಾಯ ಷರತ್ತು ಏನು?",
+  "suggested_q2": "ವಿಳಂಬಕ್ಕೆ ದಂಡ ಏನು?",
+  "suggested_q3": "ಬೌದ್ಧಿಕ ಆಸ್ತಿಯ ಮಾಲೀಕರು ಯಾರು?",
+  "suggested_q4": "ಪಾವತಿ ನಿಯಮಗಳೇನು?",
+
+  "disclaimer": "ಈ ವಿವರಣೆ ಕೇವಲ ಮಾಹಿತಿಗಾಗಿ ಮಾತ್ರ ಮತ್ತು ಕಾನೂನು ಸಲಹೆ ಅಲ್ಲ.",
+  "risk_high": "ಹೆಚ್ಚಿನ ಅಪಾಯ",
+  "risk_medium": "ಮಧ್ಯಮ ಅಪಾಯ",
+  "risk_low": "ಕಡಿಮೆ ಅಪಾಯ"
+}

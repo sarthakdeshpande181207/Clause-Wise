@@ -1,0 +1,58 @@
+{
+  "app_name": "ClauseWise",
+  "tagline": "Conversational Legal Document Simplifier",
+
+  "nav_overview": "Overview",
+  "nav_clauses": "Clauses",
+  "nav_flagged": "Flagged",
+  "nav_ask": "Ask",
+  "nav_summary": "Summary",
+  "nav_analyze": "Analyze Document",
+  "select_language": "Select Language",
+
+  "upload_document": "Upload Document",
+  "upload_hint": "Drag & drop or click to upload",
+  "upload_supported": "Supports PDF, DOCX, TXT",
+
+  "original_text": "Original Legal Text",
+  "simplified_explanation": "Simplified Explanation",
+  "key_points": "Key Points",
+  "risk_level": "Risk Level",
+  "risk_explanation": "Risk Explanation",
+  "recommendation": "Recommendation",
+  "ask_question": "Ask a Question",
+  "ask_placeholder": "Ask a question about your document...",
+  "send": "Send",
+
+  "clause_explorer": "Clause Explorer",
+  "search_clauses": "Search clauses...",
+  "filter_all": "All",
+  "filter_high": "High",
+  "filter_medium": "Medium",
+  "filter_low": "Low",
+
+  "plain_english": "Plain English Summary",
+  "translating": "Translating...",
+  "translation_failed": "Translation temporarily unavailable.",
+  "retry": "Retry",
+  "translated_in": "Translated in",
+
+  "parties_involved": "Parties Involved",
+  "key_obligations": "Key Obligations",
+  "important_terms": "Important Terms",
+  "duration_termination": "Duration & Termination",
+
+  "chatbot_title": "Ask Your Document",
+  "chatbot_subtitle": "Get instant, source-based answers from your uploaded legal document.",
+  "chatbot_empty_title": "Start a conversation",
+  "chatbot_empty_hint": "Ask any question about your document in plain language.",
+  "suggested_q1": "What is the termination clause?",
+  "suggested_q2": "What are the penalties for delay?",
+  "suggested_q3": "Who owns the intellectual property?",
+  "suggested_q4": "What are the payment terms?",
+
+  "disclaimer": "This explanation is for informational purposes only and does not constitute legal advice.",
+  "risk_high": "High Risk",
+  "risk_medium": "Medium Risk",
+  "risk_low": "Low Risk"
+}

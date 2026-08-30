@@ -1,0 +1,58 @@
+{
+  "app_name": "ClauseWise",
+  "tagline": "संवादात्मक कानूनी दस्तावेज़ सरलीकरण",
+
+  "nav_overview": "अवलोकन",
+  "nav_clauses": "धाराएँ",
+  "nav_flagged": "चिह्नित",
+  "nav_ask": "पूछें",
+  "nav_summary": "सारांश",
+  "nav_analyze": "दस्तावेज़ विश्लेषण करें",
+  "select_language": "भाषा चुनें",
+
+  "upload_document": "दस्तावेज़ अपलोड करें",
+  "upload_hint": "यहाँ फ़ाइल खींचें या क्लिक करें",
+  "upload_supported": "PDF, DOCX, TXT समर्थित",
+
+  "original_text": "मूल कानूनी पाठ",
+  "simplified_explanation": "सरल भाषा में व्याख्या",
+  "key_points": "मुख्य बिंदु",
+  "risk_level": "जोखिम स्तर",
+  "risk_explanation": "जोखिम विवरण",
+  "recommendation": "सुझाव",
+  "ask_question": "प्रश्न पूछें",
+  "ask_placeholder": "अपने दस्तावेज़ के बारे में प्रश्न पूछें...",
+  "send": "भेजें",
+
+  "clause_explorer": "धारा एक्सप्लोरर",
+  "search_clauses": "धाराएँ खोजें...",
+  "filter_all": "सभी",
+  "filter_high": "उच्च",
+  "filter_medium": "मध्यम",
+  "filter_low": "निम्न",
+
+  "plain_english": "सरल भाषा में सारांश",
+  "translating": "अनुवाद हो रहा है...",
+  "translation_failed": "अनुवाद अस्थायी रूप से अनुपलब्ध है।",
+  "retry": "पुनः प्रयास करें",
+  "translated_in": "में अनुवादित",
+
+  "parties_involved": "संबंधित पक्ष",
+  "key_obligations": "मुख्य दायित्व",
+  "important_terms": "महत्वपूर्ण शर्तें",
+  "duration_termination": "अवधि और समाप्ति",
+
+  "chatbot_title": "अपने दस्तावेज़ से पूछें",
+  "chatbot_subtitle": "अपने अपलोड किए गए कानूनी दस्तावेज़ से तुरंत स्रोत-आधारित उत्तर पाएं।",
+  "chatbot_empty_title": "बातचीत शुरू करें",
+  "chatbot_empty_hint": "सरल भाषा में अपने दस्तावेज़ के बारे में कोई भी प्रश्न पूछें।",
+  "suggested_q1": "समाप्ति धारा क्या है?",
+  "suggested_q2": "देरी के लिए जुर्माना क्या है?",
+  "suggested_q3": "बौद्धिक संपदा का मालिक कौन है?",
+  "suggested_q4": "भुगतान की शर्तें क्या हैं?",
+
+  "disclaimer": "यह व्याख्या केवल सामान्य जानकारी के लिए है और कानूनी सलाह नहीं है।",
+  "risk_high": "उच्च जोखिम",
+  "risk_medium": "मध्यम जोखिम",
+  "risk_low": "निम्न जोखिम"
+}

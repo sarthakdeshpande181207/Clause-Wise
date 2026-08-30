@@ -1,0 +1,58 @@
+{
+  "app_name": "ClauseWise",
+  "tagline": "संवादात्मक कायदेशीर दस्तऐवज सरलीकरण",
+
+  "nav_overview": "आढावा",
+  "nav_clauses": "कलमे",
+  "nav_flagged": "चिन्हांकित",
+  "nav_ask": "विचारा",
+  "nav_summary": "सारांश",
+  "nav_analyze": "दस्तऐवज विश्लेषण करा",
+  "select_language": "भाषा निवडा",
+
+  "upload_document": "दस्तऐवज अपलोड करा",
+  "upload_hint": "फाइल ड्रॅग करा किंवा क्लिक करा",
+  "upload_supported": "PDF, DOCX, TXT समर्थित",
+
+  "original_text": "मूळ कायदेशीर मजकूर",
+  "simplified_explanation": "सोप्या भाषेत स्पष्टीकरण",
+  "key_points": "मुख्य मुद्दे",
+  "risk_level": "जोखीम पातळी",
+  "risk_explanation": "जोखीम स्पष्टीकरण",
+  "recommendation": "शिफारस",
+  "ask_question": "प्रश्न विचारा",
+  "ask_placeholder": "तुमच्या दस्तऐवजाबद्दल प्रश्न विचारा...",
+  "send": "पाठवा",
+
+  "clause_explorer": "कलम एक्सप्लोरर",
+  "search_clauses": "कलमे शोधा...",
+  "filter_all": "सर्व",
+  "filter_high": "उच्च",
+  "filter_medium": "मध्यम",
+  "filter_low": "कमी",
+
+  "plain_english": "सोप्या भाषेत सारांश",
+  "translating": "अनुवाद होत आहे...",
+  "translation_failed": "अनुवाद तात्पुरता अनुपलब्ध आहे.",
+  "retry": "पुन्हा प्रयत्न करा",
+  "translated_in": "मध्ये अनुवादित",
+
+  "parties_involved": "संबंधित पक्ष",
+  "key_obligations": "मुख्य जबाबदाऱ्या",
+  "important_terms": "महत्त्वाच्या अटी",
+  "duration_termination": "कालावधी आणि समाप्ती",
+
+  "chatbot_title": "तुमच्या दस्तऐवजाला विचारा",
+  "chatbot_subtitle": "तुमच्या अपलोड केलेल्या कायदेशीर दस्तऐवजातून त्वरित उत्तरे मिळवा.",
+  "chatbot_empty_title": "संभाषण सुरू करा",
+  "chatbot_empty_hint": "सोप्या भाषेत तुमच्या दस्तऐवजाबद्दल कोणताही प्रश्न विचारा.",
+  "suggested_q1": "समाप्ती कलम काय आहे?",
+  "suggested_q2": "विलंबासाठी दंड काय आहे?",
+  "suggested_q3": "बौद्धिक संपदेचा मालक कोण आहे?",
+  "suggested_q4": "पेमेंटच्या अटी काय आहेत?",
+
+  "disclaimer": "हे स्पष्टीकरण केवळ माहितीपर आहे आणि कायदेशीर सल्ला नाही.",
+  "risk_high": "उच्च जोखीम",
+  "risk_medium": "मध्यम जोखीम",
+  "risk_low": "कमी जोखीम"
+}
