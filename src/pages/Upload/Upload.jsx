@@ -4,6 +4,7 @@ import { UploadCloud, FileText, X, AlertCircle, CheckCircle } from 'lucide-react
 import Button from '../../components/ui/Button/Button';
 import Helmet from '../../components/Helmet/Helmet';
 import { useDocument } from '../../context/DocumentContext';
+import { useTranslation } from '../../hooks/useTranslation';
 import sampleData from '../../mock/sampleAnalysis.json';
 import styles from './Upload.module.css';
 
@@ -26,6 +27,7 @@ function validateFile(file) {
 export default function Upload() {
   const navigate = useNavigate();
   const { setFile, startProcessing, setAnalysisData } = useDocument();
+  const { t } = useTranslation();
   const inputRef = useRef(null);
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -76,9 +78,9 @@ export default function Upload() {
 
       <div className={`container ${styles.inner}`}>
         <div className={styles.header}>
-          <p className={styles.label}>Upload</p>
-          <h1 className={styles.title}>Analyze your document</h1>
-          <p className={styles.sub}>Supports PDF, DOCX, and TXT files up to {MAX_MB}MB.</p>
+          <p className={styles.label}>{t('upload_document')}</p>
+          <h1 className={styles.title}>{t('analyze_your_document')}</h1>
+          <p className={styles.sub}>{t('supports_formats')}</p>
         </div>
 
         {/* Drop Zone */}
@@ -108,7 +110,7 @@ export default function Upload() {
                 <UploadCloud size={32} strokeWidth={1.5} />
               </div>
               <p className={styles.dropTitle}>
-                {isDragOver ? 'Drop to upload' : 'Drop your document here'}
+                {isDragOver ? t('drop_release') : t('drop_here')}
               </p>
               <p className={styles.dropSub}>or</p>
               <Button
@@ -116,9 +118,9 @@ export default function Upload() {
                 size="sm"
                 onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }}
               >
-                Browse files
+                {t('browse_files')}
               </Button>
-              <p className={styles.formats}>PDF · DOCX · TXT · up to {MAX_MB}MB</p>
+              <p className={styles.formats}>{t('file_formats')}</p>
             </div>
           ) : (
             <div className={styles.filePreview}>
@@ -159,9 +161,9 @@ export default function Upload() {
             onClick={handleAnalyze}
             id="analyze-btn"
           >
-            Analyze Document
+            {t('analyze_your_document')}
           </Button>
-          <p className={styles.note}>Analysis takes 10–30 seconds depending on document length.</p>
+          <p className={styles.note}>{t('analysis_note')}</p>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import Helmet from '../../components/Helmet/Helmet';
 import { useDocument } from '../../context/DocumentContext';
+import { useTranslation } from '../../hooks/useTranslation';
 import styles from './Dashboard.module.css';
 
 function formatDate(iso) {
@@ -12,6 +13,7 @@ function formatDate(iso) {
 
 export default function Dashboard() {
   const { doc } = useDocument();
+  const { t } = useTranslation();
   const data = doc.analysisData;
   if (!data) return null;
 
@@ -43,24 +45,24 @@ export default function Dashboard() {
             <h1 className={styles.docName}>{data.documentName}</h1>
             <div className={styles.docTags}>
               <span className={styles.docType}>{data.documentType}</span>
-              <span className={styles.docStat}>{data.pageCount} pages</span>
-              <span className={styles.docStat}>{data.wordCount.toLocaleString()} words</span>
+              <span className={styles.docStat}>{data.pageCount} {t('pages')}</span>
+              <span className={styles.docStat}>{data.wordCount.toLocaleString()} {t('words')}</span>
               <span className={styles.docStat}>{formatDate(data.uploadDate)}</span>
             </div>
           </div>
           <div className={styles.docActions}>
-            <Button variant="ghost" size="sm"><Download size={14} /> Export</Button>
-            <Button variant="danger" size="sm"><Trash2 size={14} /> Delete</Button>
+            <Button variant="ghost" size="sm"><Download size={14} /> {t('export')}</Button>
+            <Button variant="danger" size="sm"><Trash2 size={14} /> {t('delete')}</Button>
           </div>
         </div>
 
         {/* ── STAT CARDS ───────────────────────────────── */}
         <div className={styles.statGrid}>
           {[
-            { icon: FileText,      label: 'Total Clauses',    value: stats.totalClauses, accent: '' },
-            { icon: AlertTriangle, label: 'High Risk',        value: stats.highRisk,     accent: 'high' },
-            { icon: Calendar,      label: 'Key Dates',        value: stats.keyDates,     accent: '' },
-            { icon: Users,         label: 'Parties',          value: data.parties.length, accent: '' },
+            { icon: FileText,      label: t('total_clauses'), value: stats.totalClauses, accent: '' },
+            { icon: AlertTriangle, label: t('high_risk'),     value: stats.highRisk,     accent: 'high' },
+            { icon: Calendar,      label: t('key_dates'),     value: stats.keyDates,     accent: '' },
+            { icon: Users,         label: t('parties'),       value: data.parties.length, accent: '' },
           ].map(({ icon: Icon, label, value, accent }) => (
             <div key={label} className={`${styles.statCard} ${accent === 'high' ? styles.statHigh : ''}`}>
               <Icon size={16} strokeWidth={1.5} className={styles.statIcon} />
@@ -74,8 +76,8 @@ export default function Dashboard() {
           {/* ── HIGH RISK CLAUSES PREVIEW ─────────────── */}
           <div className={styles.section}>
             <div className={styles.sectionHead}>
-              <h2 className={styles.sectionTitle}>High Risk Clauses</h2>
-              <Link to="/important-clauses" className={styles.viewAll}>View all <ChevronRight size={14} /></Link>
+              <h2 className={styles.sectionTitle}>{t('high_risk_clauses')}</h2>
+              <Link to="/important-clauses" className={styles.viewAll}>{t('view_all')} <ChevronRight size={14} /></Link>
             </div>
             <div className={styles.clauseList}>
               {topClauses.map(clause => (
@@ -96,7 +98,7 @@ export default function Dashboard() {
           {/* ── KEY DATES ────────────────────────────────── */}
           <div className={styles.section}>
             <div className={styles.sectionHead}>
-              <h2 className={styles.sectionTitle}>Key Dates</h2>
+              <h2 className={styles.sectionTitle}>{t('key_dates')}</h2>
             </div>
             <div className={styles.dateList}>
               {keyDates.map(kd => (
@@ -117,9 +119,9 @@ export default function Dashboard() {
 
         {/* ── QUICK ASK ────────────────────────────────── */}
         <div className={styles.quickAsk}>
-          <p className={styles.quickAskLabel}>Quick Ask</p>
+          <p className={styles.quickAskLabel}>{t('quick_ask')}</p>
           <Link to="/ask" className={styles.quickAskInput}>
-            <span className={styles.quickAskPlaceholder}>Ask anything about this document…</span>
+            <span className={styles.quickAskPlaceholder}>{t('quick_ask_placeholder')}</span>
             <ChevronRight size={16} className={styles.quickAskArrow} />
           </Link>
         </div>

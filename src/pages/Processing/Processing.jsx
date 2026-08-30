@@ -4,21 +4,24 @@ import { CheckCircle, Loader, AlertCircle } from 'lucide-react';
 import Button from '../../components/ui/Button/Button';
 import Helmet from '../../components/Helmet/Helmet';
 import { useDocument } from '../../context/DocumentContext';
+import { useTranslation } from '../../hooks/useTranslation';
 import { extractTextFromFile } from '../../utils/documentParser';
 import { analyzeDocumentWithGemini } from '../../utils/geminiAnalyzer';
 import styles from './Processing.module.css';
 
-const STEPS = [
-  { id: 1, label: 'Document received',       duration: 400 },
-  { id: 2, label: 'Extracting text',         duration: 800 },
-  { id: 3, label: 'Identifying clauses',     duration: 900 },
-  { id: 4, label: 'Analyzing risk levels',   duration: 700 },
-  { id: 5, label: 'Generating summaries',    duration: 700 },
-];
-
 export default function Processing() {
   const navigate = useNavigate();
   const { doc, setRawDocumentText, setAnalysisData, setError } = useDocument();
+  const { t } = useTranslation();
+
+  const STEPS = [
+    { id: 1, label: t('step_received'),       duration: 400 },
+    { id: 2, label: t('step_extracting'),     duration: 800 },
+    { id: 3, label: t('step_identifying'),    duration: 900 },
+    { id: 4, label: t('step_risk'),           duration: 700 },
+    { id: 5, label: t('step_summaries'),      duration: 700 },
+  ];
+
   const [completedSteps, setCompletedSteps] = useState([]);
   const [activeStep, setActiveStep] = useState(1);
   const [progress, setProgress] = useState(0);
@@ -132,9 +135,9 @@ export default function Processing() {
           <div className={styles.errorIcon}>
             <AlertCircle size={32} strokeWidth={1.5} />
           </div>
-          <h1 className={styles.errorTitle}>Analysis failed</h1>
+          <h1 className={styles.errorTitle}>{t('analysis_failed')}</h1>
           <p className={styles.errorDesc}>{doc.error || 'Something went wrong. Please try again.'}</p>
-          <Button variant="ghost" onClick={() => navigate('/upload')}>Try again</Button>
+          <Button variant="ghost" onClick={() => navigate('/upload')}>{t('try_again')}</Button>
         </div>
       </div>
     );
@@ -159,7 +162,7 @@ export default function Processing() {
         </div>
 
         <div className={styles.header}>
-          <h1 className={styles.title}>Analyzing your document</h1>
+          <h1 className={styles.title}>{t('analyzing_your_document')}</h1>
           {doc.fileName && <p className={styles.fileName}>{doc.fileName}</p>}
         </div>
 

@@ -1,6 +1,7 @@
 import { Shield, Lock, Server, Trash2, Mail, Scale, FileText, AlertTriangle, UserCheck, Gavel } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Helmet from '../../components/Helmet/Helmet';
+import { useTranslation } from '../../hooks/useTranslation';
 import styles from './Privacy.module.css';
 
 const LAST_UPDATED = 'August 26, 2026';
@@ -84,6 +85,7 @@ const TERMS_SECTIONS = [
 ];
 
 export default function Privacy() {
+  const { t } = useTranslation();
   return (
     <div className={`${styles.page} page-enter`}>
       <Helmet
@@ -103,18 +105,18 @@ export default function Privacy() {
           <div className={styles.headerIcon}>
             <Shield size={24} strokeWidth={1.5} />
           </div>
-          <h1 className={styles.title}>Privacy & Terms of Service</h1>
+          <h1 className={styles.title}>{t('privacy_title')}</h1>
           <p className={styles.subtitle}>
-            Your documents stay yours. We built ClauseWise with privacy as a first principle — no accounts, no tracking, no data retention.
+            {t('privacy_subtitle')}
           </p>
-          <span className={styles.lastUpdated}>Last updated: {LAST_UPDATED}</span>
+          <span className={styles.lastUpdated}>{t('last_updated')}</span>
         </header>
 
         {/* ── Privacy Policy ──────────────────────────────── */}
         <div className={styles.policyBlock}>
           <div className={styles.blockLabel}>
             <Lock size={14} strokeWidth={2} />
-            <span>Privacy Policy</span>
+            <span>{t('privacy_policy')}</span>
           </div>
 
           <div className={styles.sections}>
@@ -142,7 +144,7 @@ export default function Privacy() {
         <div className={styles.policyBlock}>
           <div className={styles.blockLabel}>
             <Gavel size={14} strokeWidth={2} />
-            <span>Terms of Service</span>
+            <span>{t('terms_of_service')}</span>
           </div>
 
           <div className={styles.sections}>
@@ -170,9 +172,9 @@ export default function Privacy() {
         <div className={styles.contactCard}>
           <Mail size={18} strokeWidth={1.5} className={styles.contactIcon} />
           <div>
-            <h3 className={styles.contactTitle}>Questions?</h3>
+            <h3 className={styles.contactTitle}>{t('questions')}</h3>
             <p className={styles.contactText}>
-              Reach out at <a href="mailto:privacy@clausewise.app" className={styles.contactLink}>privacy@clausewise.app</a> — we respond within 48 hours.
+              {t('contact_text')}
             </p>
           </div>
         </div>
@@ -184,10 +186,10 @@ export default function Privacy() {
               <Scale size={16} strokeWidth={1.5} />
               <span>ClauseWise</span>
             </div>
-            <Link to="/" className={styles.footerLink}>← Back to Home</Link>
+            <Link to="/" className={styles.footerLink}>{t('back_to_home')}</Link>
           </div>
           <p className={styles.disclaimer}>
-            ClauseWise does not provide legal advice. This page is for informational purposes and describes how the application handles user-uploaded documents and the terms governing its use.
+            {t('footer_disclaimer')}
           </p>
         </footer>
       </div>

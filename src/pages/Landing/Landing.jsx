@@ -3,6 +3,7 @@ import { Scale, FileText, AlertTriangle, MessageSquare, ChevronRight, Lock, Cloc
 import Button from '../../components/ui/Button/Button';
 import styles from './Landing.module.css';
 import Helmet from '../../components/Helmet/Helmet';
+import { useTranslation } from '../../hooks/useTranslation';
 const FEATURES = [
   {
     icon: FileText,
@@ -33,9 +34,40 @@ const TRUST_MARKERS = [
 ];
 
 export default function Landing() {
+  const { t } = useTranslation();
+
+  const FEATURES = [
+    {
+      icon: FileText,
+      title: t('feature1_title'),
+      desc: t('feature1_desc'),
+    },
+    {
+      icon: AlertTriangle,
+      title: t('feature2_title'),
+      desc: t('feature2_desc'),
+    },
+    {
+      icon: MessageSquare,
+      title: t('feature3_title'),
+      desc: t('feature3_desc'),
+    },
+    {
+      icon: Search,
+      title: t('feature4_title'),
+      desc: t('feature4_desc'),
+    },
+  ];
+
+  const TRUST_MARKERS = [
+    { icon: FileText, label: 'PDF / DOCX' },
+    { icon: Shield, label: t('secure_processing') },
+    { icon: CheckCircle, label: t('doc_based_answers') },
+  ];
+
   return (
     <div className={`${styles.page} page-enter`}>
-<Helmet title="ClauseWise – Landing" description="Understand legal documents with clarity before you sign." />
+      <Helmet title={`ClauseWise – ${t('hero_pill')}`} description={t('hero_sub')} />
       {/* ── HERO ──────────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className="container">
@@ -43,26 +75,26 @@ export default function Landing() {
             
             <div className={styles.heroPill}>
               <span className={styles.heroPillDot} />
-              Conversational Legal Document Simplifier
+              {t('hero_pill')}
             </div>
 
             <h1 className={styles.heroHeadline}>
-              Understand what you're agreeing to.<br />
-              <span className={styles.heroAccent}>Before you sign.</span>
+              {t('hero_headline')}<br />
+              <span className={styles.heroAccent}>{t('hero_accent')}</span>
             </h1>
 
             <p className={styles.heroSub}>
-              Make complex legal documents easier to understand, identify important clauses, and ask questions in plain language.
+              {t('hero_sub')}
             </p>
 
             <div className={styles.heroCTAs}>
               <Link to="/upload">
                 <Button variant="primary" size="lg">
-                  Upload a Document
+                  {t('upload_a_document')}
                 </Button>
               </Link>
               <Button variant="ghost" size="lg" className={styles.ghostBtn} onClick={(e)=>{e.preventDefault(); document.getElementById('how-it-works')?.scrollIntoView({behavior:'smooth'});}} aria-label="See How It Works">
-                  See How It Works <ChevronRight size={18} />
+                  {t('see_how_it_works')} <ChevronRight size={18} />
                 </Button>
             </div>
 
@@ -82,23 +114,23 @@ export default function Landing() {
                   <div className={styles.mockIcon}><FileText size={20} strokeWidth={1.5} /></div>
                   <div className={styles.mockMeta}>
                     <span className={styles.mockTitle}>Service_Agreement_Final.pdf</span>
-                    <span className={styles.mockSubtitle}>Verified Analysis Preview</span>
+                    <span className={styles.mockSubtitle}>{t('sample_preview')}</span>
                   </div>
-                  <div className={styles.mockLink}>Explore Sample <ChevronRight size={14} /></div>
+                  <div className={styles.mockLink}>{t('explore_sample')} <ChevronRight size={14} /></div>
                 </div>
                 
                 <div className={styles.mockStatsRow}>
                   <div className={styles.mockStatCard}>
                     <span className={styles.mockStatNum}>27</span>
-                    <span className={styles.mockStatLabel}>Clauses Extracted</span>
+                    <span className={styles.mockStatLabel}>{t('clauses_extracted')}</span>
                   </div>
                   <div className={styles.mockStatCardWarning}>
                     <span className={styles.mockStatNumWarning}>5</span>
-                    <span className={styles.mockStatLabel}>Important Clauses</span>
+                    <span className={styles.mockStatLabel}>{t('important_clauses')}</span>
                   </div>
                   <div className={styles.mockStatCardDanger}>
                     <span className={styles.mockStatNumDanger}>2</span>
-                    <span className={styles.mockStatLabel}>High Attention</span>
+                    <span className={styles.mockStatLabel}>{t('high_attention')}</span>
                   </div>
                 </div>
               </div>
@@ -112,9 +144,9 @@ export default function Landing() {
       <section className={styles.features} id="how-it-works">
         <div className="container">
           <div className={styles.sectionHeaderCentered}>
-            <h2 className={styles.sectionTitleCentered}>Built for clarity and transparency</h2>
+            <h2 className={styles.sectionTitleCentered}>{t('clarity_title')}</h2>
             <p className={styles.sectionSubCentered}>
-              Designed specifically for ordinary people navigating complex agreements without legal jargon.
+              {t('clarity_sub')}
             </p>
           </div>
 
@@ -141,11 +173,11 @@ export default function Landing() {
               <span>ClauseWise</span>
             </div>
             <div className={styles.footerLinks}>
-              <Link to="/privacy">Privacy &amp; Terms of Service</Link>
+              <Link to="/privacy">{t('privacy_terms')}</Link>
             </div>
           </div>
           <p className={styles.footerDisclaimer}>
-            ClauseWise does not provide legal advice. Analysis is for informational purposes only and should not be relied upon as a substitute for advice from a qualified legal professional.
+            {t('footer_disclaimer')}
           </p>
         </div>
       </footer>

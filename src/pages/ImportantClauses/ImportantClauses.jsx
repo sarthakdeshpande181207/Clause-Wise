@@ -1,4 +1,5 @@
 import { useDocument } from '../../context/DocumentContext';
+import { useTranslation } from '../../hooks/useTranslation';
 import { AlertTriangle, Shield, Info, CheckCircle } from 'lucide-react';
 import Badge from '../../components/ui/Badge/Badge';
 import Helmet from '../../components/Helmet/Helmet';
@@ -6,6 +7,7 @@ import styles from './ImportantClauses.module.css';
 
 export default function ImportantClauses() {
   const { doc } = useDocument();
+  const { t } = useTranslation();
   
   // Filter only high and medium risk clauses
   const importantClauses = (doc?.analysisData?.clauses || []).filter(
@@ -27,9 +29,9 @@ export default function ImportantClauses() {
 
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Important Clauses</h1>
+          <h1 className={styles.title}>{t('important_clauses_title')}</h1>
           <p className={styles.subtitle}>
-            Review the {importantClauses.length} clauses that require your attention.
+            {t('important_clauses_sub')}
           </p>
         </header>
 
@@ -56,7 +58,7 @@ export default function ImportantClauses() {
                   {clause.explanation && (
                     <div className={styles.analysisBox}>
                       <h4 className={styles.boxTitle}>
-                        <Info size={14} /> Risk Explanation
+                        <Info size={14} /> {t('risk_explanation')}
                       </h4>
                       <p className={styles.boxText}>{clause.explanation}</p>
                     </div>
@@ -64,7 +66,7 @@ export default function ImportantClauses() {
                   {clause.recommendation && (
                     <div className={`${styles.analysisBox} ${styles.actionBox}`}>
                       <h4 className={styles.boxTitle}>
-                        <CheckCircle size={14} /> Recommendation
+                        <CheckCircle size={14} /> {t('recommendation')}
                       </h4>
                       <p className={styles.boxText}>{clause.recommendation}</p>
                     </div>
@@ -78,8 +80,8 @@ export default function ImportantClauses() {
             <div className={styles.emptyIcon}>
               <CheckCircle size={48} strokeWidth={1} />
             </div>
-            <h2>No Important Clauses</h2>
-            <p>We didn't find any high or medium risk clauses in this document.</p>
+            <h2>{t('no_important_clauses')}</h2>
+            <p>{t('no_important_clauses_sub')}</p>
           </div>
         )}
       </div>
