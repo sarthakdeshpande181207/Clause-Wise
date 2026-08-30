@@ -4,6 +4,7 @@ import { MessageSquare, Send, FileText, BookOpen, Scale } from 'lucide-react';
 import { useDocument } from '../../context/DocumentContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTranslation } from '../../hooks/useTranslation';
+import FormattedAiMessage from '../../components/chat/FormattedAiMessage/FormattedAiMessage';
 import Helmet from '../../components/Helmet/Helmet';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import styles from './AskDocument.module.css';
@@ -64,11 +65,17 @@ export default function AskDocument() {
       const systemPrompt = `You are a helpful legal AI assistant for the ClauseWise app.
 You are provided with the extracted clauses from a legal document.
 
-STRICT MULTILINGUAL RULES:
+STRICT MULTILINGUAL & FORMATTING RULES:
 1. Target Output Language: ${targetLangName} (${languageCode}). You MUST answer the user strictly in ${targetLangName}.
-2. Mixed-Language Input: The user's question may be written in English, ${targetLangName}, or a mixed-language style (e.g., Hinglish, Marathlish, Gujlish, etc.). Understand the user's intent regardless of the input language, but ALWAYS respond in ${targetLangName}.
-3. Factuality: Use ONLY the provided document clauses to answer. If the answer cannot be found in the provided document, politely state in ${targetLangName} that you cannot find the answer in the document. Do not invent facts.
-4. Accuracy: Preserve all numbers, dates, monetary amounts (₹, $, %), and clause references accurately.
+2. Mixed-Language Input: Understand user intent regardless of input language (English, Hinglish, Marathlish, Gujlish, etc.), but ALWAYS respond in ${targetLangName}.
+3. Structure & Formatting:
+   - When explaining clauses or giving multi-point answers, structure your response clause by clause.
+   - Use bold titles for each clause/section, e.g.: **Section 1: [Title]** or **कलाम १: [शीर्षक]** or **1. **[Title]****
+   - Provide a concise 1-2 sentence description for each clause.
+   - Use numbered or bulleted lists for documents, obligations, or details.
+   - Do NOT output dense unstructured walls of text. Keep each section clean and distinct.
+4. Factuality: Use ONLY the provided document clauses to answer. If the answer cannot be found in the provided document, politely state in ${targetLangName} that you cannot find the answer in the document. Do not invent facts.
+5. Accuracy: Preserve all numbers, dates, monetary amounts (₹, $, %), and clause references accurately.
 
 Document Clauses Context:
 ${documentContext}`;
@@ -191,7 +198,11 @@ ${documentContext}`;
                     {msg.role === 'ai' ? <Scale size={14} /> : 'You'}
                   </div>
                   <div className={`${styles.bubble} ${msg.role === 'ai' ? styles.bubbleAi : styles.bubbleUser}`}>
-                    {msg.text}
+                    {msg.role === 'ai' ? (
+                      <FormattedAiMessage text={msg.text} />
+                    ) : (
+                      msg.text
+                    )}
                     {msg.source && (
                       <div className={styles.sourceRef}>
                         <BookOpen size={10} strokeWidth={2} className={styles.sourceRefIcon} />

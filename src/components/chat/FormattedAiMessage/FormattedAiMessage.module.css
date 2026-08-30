@@ -1,0 +1,126 @@
+.structuredContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.boldText {
+  color: var(--accent-gold, #dca54b);
+  font-weight: 600;
+}
+
+.simpleText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  line-height: 1.6;
+}
+
+.paragraph {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--text-primary, #ffffff);
+}
+
+.introBox {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid var(--accent-gold, #dca54b);
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.introText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary, #cbd5e1);
+}
+
+/* ── CLAUSE CARD BLOCKS INSIDE CHAT ────────────────────────── */
+.blocksList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.clauseCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(220, 165, 75, 0.2);
+  border-radius: 8px;
+  padding: 12px 14px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.clauseCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(220, 165, 75, 0.4);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.headerIcon {
+  color: var(--accent-gold, #dca54b);
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary, #ffffff);
+  line-height: 1.4;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.bodyParagraph {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-secondary, #cbd5e1);
+}
+
+.itemsList {
+  margin: 6px 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.itemRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.itemBullet {
+  color: var(--accent-gold, #dca54b);
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+.itemContent {
+  color: var(--text-secondary, #cbd5e1);
+  flex: 1;
+}
