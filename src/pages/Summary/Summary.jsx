@@ -1,17 +1,59 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, Users, CheckSquare, Bookmark, Clock, ChevronRight } from 'lucide-react';
+import { FileText, Users, CheckSquare, Bookmark, Clock, ChevronRight, Loader } from 'lucide-react';
 import Helmet from '../../components/Helmet/Helmet';
 import { useDocument } from '../../context/DocumentContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { useTranslation } from '../../hooks/useTranslation';
+import { translateSummary } from '../../utils/clauseTranslator';
 import styles from './Summary.module.css';
 
 export default function Summary() {
   const { doc } = useDocument();
+  const { languageCode } = useLanguage();
   const { t } = useTranslation();
-  const data = doc.analysisData;
-  if (!data) return null;
 
-  const { detailedSummary } = data;
+  const data = doc?.analysisData;
+  const baseSummary = data?.detailedSummary;
+
+  const [activeSummary, setActiveSummary] = useState(baseSummary);
+  const [isTranslating, setIsTranslating] = useState(false);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    if (!baseSummary) return;
+
+    if (languageCode === 'en') {
+      setActiveSummary(baseSummary);
+      setIsTranslating(false);
+      return;
+    }
+
+    setIsTranslating(true);
+    const docId = doc?.fileName || 'doc_default';
+
+    translateSummary(baseSummary, languageCode, docId)
+      .then((res) => {
+        if (!isCancelled) {
+          setActiveSummary(res);
+          setIsTranslating(false);
+        }
+      })
+      .catch((err) => {
+        console.error("Summary translation error:", err);
+        if (!isCancelled) {
+          setActiveSummary(baseSummary);
+          setIsTranslating(false);
+        }
+      });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [baseSummary, languageCode, doc?.fileName]);
+
+  if (!data || !activeSummary) return null;
 
   return (
     <div className={`${styles.page} page-enter`}>
@@ -33,8 +75,11 @@ export default function Summary() {
             <FileText size={28} strokeWidth={1.5} />
           </div>
           <div>
-            <h1 className={styles.docType}>{detailedSummary.documentClassification}</h1>
-            <p className={styles.takeaway}>{detailedSummary.simpleTakeaway}</p>
+            <h1 className={styles.docType}>
+              {activeSummary.documentClassification}
+              {isTranslating && <Loader size={16} className={styles.spin} style={{ marginLeft: 10, verticalAlign: 'middle', color: 'var(--accent-gold)' }} />}
+            </h1>
+            <p className={styles.takeaway}>{activeSummary.simpleTakeaway}</p>
           </div>
         </div>
 
@@ -48,7 +93,7 @@ export default function Summary() {
               <h2 className={styles.cardTitle}>{t('parties_involved')}</h2>
             </div>
             <ul className={styles.list}>
-              {detailedSummary.partiesInvolved.map((party, i) => (
+              {activeSummary.partiesInvolved?.map((party, i) => (
                 <li key={i} className={styles.listItem}>{party}</li>
               ))}
             </ul>
@@ -61,7 +106,7 @@ export default function Summary() {
               <h2 className={styles.cardTitle}>{t('key_obligations')}</h2>
             </div>
             <ul className={styles.list}>
-              {detailedSummary.keyObligations.map((ob, i) => (
+              {activeSummary.keyObligations?.map((ob, i) => (
                 <li key={i} className={styles.listItem}>{ob}</li>
               ))}
             </ul>
@@ -74,7 +119,7 @@ export default function Summary() {
               <h2 className={styles.cardTitle}>{t('important_terms')}</h2>
             </div>
             <ul className={styles.list}>
-              {detailedSummary.importantTerms.map((term, i) => (
+              {activeSummary.importantTerms?.map((term, i) => (
                 <li key={i} className={styles.listItem}>{term}</li>
               ))}
             </ul>
@@ -86,7 +131,7 @@ export default function Summary() {
               <Clock size={18} className={styles.icon} />
               <h2 className={styles.cardTitle}>{t('duration_termination')}</h2>
             </div>
-            <p className={styles.textBlock}>{detailedSummary.durationAndTermination}</p>
+            <p className={styles.textBlock}>{activeSummary.durationAndTermination}</p>
           </div>
 
         </div>

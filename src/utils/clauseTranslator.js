@@ -122,6 +122,83 @@ Translate and simplify this clause into ${targetLangName} (${targetLang}) matchi
 }
 
 /**
+ * Translates a detailed document summary into the target language using Gemini.
+ * Uses an in-memory cache to prevent unnecessary LLM API calls.
+ * 
+ * @param {Object} summaryObj - Detailed summary object
+ * @param {string} targetLang - Language code (en, hi, mr, gu, kn)
+ * @param {string} docId - Optional document ID for cache isolation
+ * @returns {Promise<Object>} Localized detailed summary object
+ */
+export async function translateSummary(summaryObj, targetLang = 'en', docId = 'doc_default') {
+  if (!summaryObj) return null;
+
+  if (targetLang === 'en') {
+    return summaryObj;
+  }
+
+  const cacheKey = `${docId}_summary_${targetLang}`;
+  if (translationCache.has(cacheKey)) {
+    return translationCache.get(cacheKey);
+  }
+
+  const targetLangName = LANGUAGE_NAMES[targetLang] || 'English';
+
+  const systemInstruction = `You are an expert legal document simplification assistant.
+Translate and simplify the provided document summary strictly into ${targetLangName} (${targetLang}).
+
+STRICT RULES:
+1. Preserve legal accuracy.
+2. Translate all text fields into ${targetLangName}.
+3. Preserve all names, dates, numbers, percentages, and monetary amounts (₹, $, €) accurately.
+4. Output MUST BE STRICT JSON matching the exact schema below.
+
+JSON Schema:
+{
+  "documentClassification": "Document Classification in ${targetLangName}",
+  "simpleTakeaway": "Simple Takeaway in ${targetLangName}",
+  "partiesInvolved": ["Party 1 in ${targetLangName}", "Party 2 in ${targetLangName}"],
+  "keyObligations": ["Obligation 1 in ${targetLangName}", "Obligation 2 in ${targetLangName}"],
+  "importantTerms": ["Term 1 in ${targetLangName}", "Term 2 in ${targetLangName}"],
+  "durationAndTermination": "Duration & Termination in ${targetLangName}"
+}`;
+
+  const userPrompt = `
+Base Summary Object (in English):
+${JSON.stringify(summaryObj, null, 2)}
+
+Translate all fields into ${targetLangName} (${targetLang}) matching the JSON schema.`;
+
+  try {
+    const model = genAI.getGenerativeModel({ model: 'gemini-3.6-flash' });
+    const chat = model.startChat({
+      generationConfig: {
+        temperature: 0.1,
+        responseMimeType: 'application/json',
+      },
+    });
+
+    const result = await chat.sendMessage(`${systemInstruction}\n\n${userPrompt}`);
+    const jsonResponse = JSON.parse(result.response.text());
+
+    const localizedSummary = {
+      documentClassification: jsonResponse.documentClassification || summaryObj.documentClassification,
+      simpleTakeaway: jsonResponse.simpleTakeaway || summaryObj.simpleTakeaway,
+      partiesInvolved: Array.isArray(jsonResponse.partiesInvolved) ? jsonResponse.partiesInvolved : summaryObj.partiesInvolved,
+      keyObligations: Array.isArray(jsonResponse.keyObligations) ? jsonResponse.keyObligations : summaryObj.keyObligations,
+      importantTerms: Array.isArray(jsonResponse.importantTerms) ? jsonResponse.importantTerms : summaryObj.importantTerms,
+      durationAndTermination: jsonResponse.durationAndTermination || summaryObj.durationAndTermination,
+    };
+
+    translationCache.set(cacheKey, localizedSummary);
+    return localizedSummary;
+  } catch (error) {
+    console.error(`[ClauseTranslator] Error translating summary to ${targetLang}:`, error);
+    return summaryObj; // Fallback to English summary on error
+  }
+}
+
+/**
  * Clears the translation cache. Useful when a new document is uploaded.
  */
 export function clearTranslationCache() {
