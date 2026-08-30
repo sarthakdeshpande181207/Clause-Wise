@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { MessageSquare, Send, FileText, BookOpen, Scale } from 'lucide-react';
 import { useDocument } from '../../context/DocumentContext';
+import { useLanguage } from '../../context/LanguageContext';
+import { useTranslation } from '../../hooks/useTranslation';
 import Helmet from '../../components/Helmet/Helmet';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import styles from './AskDocument.module.css';
@@ -17,11 +20,22 @@ const SUGGESTED_QUESTIONS = [
 
 export default function AskDocument() {
   const { doc } = useDocument();
+  const location = useLocation();
+  const { languageCode, currentLanguage } = useLanguage();
+  const { t } = useTranslation();
+
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Check for prefilled question from navigation (e.g. from ClauseExplorer)
+  useEffect(() => {
+    if (location.state?.prefill) {
+      setInput(location.state.prefill);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -45,12 +59,18 @@ export default function AskDocument() {
       const clauses = doc?.analysisData?.clauses || [];
       const documentContext = clauses.map(c => `[Section ${c.number}: ${c.title}]\n${c.originalText || c.text || ''}`).join('\n\n');
       
-      const systemPrompt = `You are a helpful legal AI assistant for the ClauseWise app. 
-You will be provided with the extracted clauses from a legal document. 
-Use ONLY the provided document clauses to answer the user's questions. 
-If the answer cannot be found in the provided document, politely state that you cannot find the answer in the document. Do not invent answers.
+      const targetLangName = currentLanguage.name;
 
-Document Clauses:
+      const systemPrompt = `You are a helpful legal AI assistant for the ClauseWise app.
+You are provided with the extracted clauses from a legal document.
+
+STRICT MULTILINGUAL RULES:
+1. Target Output Language: ${targetLangName} (${languageCode}). You MUST answer the user strictly in ${targetLangName}.
+2. Mixed-Language Input: The user's question may be written in English, ${targetLangName}, or a mixed-language style (e.g., Hinglish, Marathlish, Gujlish, etc.). Understand the user's intent regardless of the input language, but ALWAYS respond in ${targetLangName}.
+3. Factuality: Use ONLY the provided document clauses to answer. If the answer cannot be found in the provided document, politely state in ${targetLangName} that you cannot find the answer in the document. Do not invent facts.
+4. Accuracy: Preserve all numbers, dates, monetary amounts (₹, $, %), and clause references accurately.
+
+Document Clauses Context:
 ${documentContext}`;
 
       // Initialize model normally
@@ -61,7 +81,7 @@ ${documentContext}`;
       // Inject system prompt as the first interaction in history
       const historyMessages = [
         { role: 'user', parts: [{ text: systemPrompt }] },
-        { role: 'model', parts: [{ text: "Understood. I will use ONLY the provided document clauses to answer your questions." }] },
+        { role: 'model', parts: [{ text: `Understood. I will use ONLY the provided document clauses and respond strictly in ${targetLangName}.` }] },
         ...messages.map(m => ({
           role: m.role === 'ai' ? 'model' : 'user',
           parts: [{ text: m.text }],
@@ -116,10 +136,10 @@ ${documentContext}`;
         {/* Header */}
         <header className={styles.header}>
           <h1 className={styles.title}>
-            Ask Your <span className={styles.titleAccent}>Document</span>
+            {t('chatbot_title')}
           </h1>
           <p className={styles.subtitle}>
-            Get instant, source-based answers from your uploaded legal document.
+            {t('chatbot_subtitle')}
           </p>
         </header>
 
@@ -137,12 +157,17 @@ ${documentContext}`;
               <div className={styles.emptyIcon}>
                 <MessageSquare size={24} strokeWidth={1.5} />
               </div>
-              <h2 className={styles.emptyTitle}>Start a conversation</h2>
+              <h2 className={styles.emptyTitle}>{t('chatbot_empty_title')}</h2>
               <p className={styles.emptyHint}>
-                Ask any question about your document in plain language. Answers are grounded in the actual clauses.
+                {t('chatbot_empty_hint')}
               </p>
               <div className={styles.suggestions}>
-                {SUGGESTED_QUESTIONS.map((q) => (
+                {[
+                  t('suggested_q1'),
+                  t('suggested_q2'),
+                  t('suggested_q3'),
+                  t('suggested_q4')
+                ].map((q) => (
                   <button
                     key={q}
                     className={styles.suggestionChip}
@@ -201,18 +226,18 @@ ${documentContext}`;
           <textarea
             ref={inputRef}
             className={styles.inputField}
-            placeholder="Ask a question about your document..."
+            placeholder={t('ask_placeholder')}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             rows={1}
-            aria-label="Ask a question"
+            aria-label={t('ask_question')}
           />
           <button
             className={styles.sendBtn}
             onClick={() => handleSend()}
             disabled={!input.trim() || isTyping}
-            aria-label="Send question"
+            aria-label={t('send')}
           >
             <Send size={18} strokeWidth={2} />
           </button>
