@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom';
 import { FileText, Users, CheckSquare, Bookmark, Clock, ChevronRight } from 'lucide-react';
 import Helmet from '../../components/Helmet/Helmet';
 import { useDocument } from '../../context/DocumentContext';
+import { useTranslation } from '../../hooks/useTranslation';
 import styles from './Summary.module.css';
 
 export default function Summary() {
   const { doc } = useDocument();
+  const { t } = useTranslation();
   const data = doc.analysisData;
   if (!data) return null;
 
@@ -43,7 +45,7 @@ export default function Summary() {
           <div className={styles.card}>
             <div className={styles.cardHeader}>
               <Users size={18} className={styles.icon} />
-              <h2 className={styles.cardTitle}>Parties Involved</h2>
+              <h2 className={styles.cardTitle}>{t('parties_involved')}</h2>
             </div>
             <ul className={styles.list}>
               {detailedSummary.partiesInvolved.map((party, i) => (
@@ -56,7 +58,7 @@ export default function Summary() {
           <div className={styles.card}>
             <div className={styles.cardHeader}>
               <CheckSquare size={18} className={styles.icon} />
-              <h2 className={styles.cardTitle}>Key Obligations</h2>
+              <h2 className={styles.cardTitle}>{t('key_obligations')}</h2>
             </div>
             <ul className={styles.list}>
               {detailedSummary.keyObligations.map((ob, i) => (
@@ -69,7 +71,7 @@ export default function Summary() {
           <div className={styles.card}>
             <div className={styles.cardHeader}>
               <Bookmark size={18} className={styles.icon} />
-              <h2 className={styles.cardTitle}>Important Terms</h2>
+              <h2 className={styles.cardTitle}>{t('important_terms')}</h2>
             </div>
             <ul className={styles.list}>
               {detailedSummary.importantTerms.map((term, i) => (
@@ -82,7 +84,7 @@ export default function Summary() {
           <div className={styles.card}>
             <div className={styles.cardHeader}>
               <Clock size={18} className={styles.icon} />
-              <h2 className={styles.cardTitle}>Duration & Termination</h2>
+              <h2 className={styles.cardTitle}>{t('duration_termination')}</h2>
             </div>
             <p className={styles.textBlock}>{detailedSummary.durationAndTermination}</p>
           </div>
@@ -91,9 +93,8 @@ export default function Summary() {
 
         {/* Ask Link */}
         <div className={styles.footerLink}>
-          <p>Have questions about this summary?</p>
           <Link to="/ask" className={styles.askBtn}>
-            Ask the Document <ChevronRight size={16} />
+            {t('ask_question')} <ChevronRight size={16} />
           </Link>
         </div>
 
