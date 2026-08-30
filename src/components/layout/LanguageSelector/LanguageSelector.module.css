@@ -1,0 +1,153 @@
+.selectorContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.triggerBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--bg-card, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  border-radius: 6px;
+  color: var(--text-primary, #ffffff);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.triggerBtn:hover,
+.triggerBtn.active {
+  background: var(--bg-hover, rgba(255, 255, 255, 0.1));
+  border-color: var(--accent-gold, #dca54b);
+}
+
+.globeIcon {
+  color: var(--accent-gold, #dca54b);
+  flex-shrink: 0;
+}
+
+.langName {
+  white-space: nowrap;
+}
+
+.chevron {
+  color: var(--text-secondary, #94a3b8);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ── DROPDOWN MENU ────────────────────────────────────────── */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 180px;
+  background: var(--bg-card, #121318);
+  border: 1px solid var(--border-light, rgba(220, 165, 75, 0.25));
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(220, 165, 75, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 200;
+  padding: 6px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px 8px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-gold, #dca54b);
+  border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  margin-bottom: 4px;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.optionBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--text-secondary, #cbd5e1);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.optionBtn:hover {
+  background: var(--bg-hover, rgba(255, 255, 255, 0.08));
+  color: var(--text-primary, #ffffff);
+}
+
+.selectedOption {
+  background: var(--accent-gold-bg, rgba(220, 165, 75, 0.15));
+  color: var(--accent-gold, #dca54b);
+  font-weight: 600;
+}
+
+.checkSlot {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkIcon {
+  color: var(--accent-gold, #dca54b);
+}
+
+.nativeName {
+  font-size: 13.5px;
+}
+
+.englishName {
+  font-size: 11px;
+  opacity: 0.5;
+  margin-left: auto;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .dropdownMenu {
+    right: -10px;
+    width: 170px;
+  }
+}
